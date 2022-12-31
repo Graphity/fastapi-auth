@@ -4,8 +4,8 @@ from fastapi.security import OAuth2PasswordBearer
 
 import bcrypt
 
-from .config import settings
-from .schemas import TokenData
+from app.config import settings
+from app.schemas.token import TokenData
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 

@@ -1,6 +1,6 @@
-from .models import User
-from .schemas import UserCreate
-from .security import hash_password
+from app.models.user import User
+from app.schemas.user import UserCreate
+from app.security import hash_password
 
 
 def get_user(db_session, user_id: int) -> User:
