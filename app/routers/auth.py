@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from app.schemas.token import Token
 from app.dependencies import get_db
-from app.crud.user import get_user_by_email
+from app.crud.user import get_by_email
 from app.core.security import create_access_token, check_password
 
 router = APIRouter(tags=["Authentication"])
@@ -12,7 +12,7 @@ router = APIRouter(tags=["Authentication"])
 
 @router.post("/login", response_model=Token)
 def login_user(user_credentials: OAuth2PasswordRequestForm = Depends(), db_session: Session = Depends(get_db)):
-    user = get_user_by_email(db_session, user_credentials.username)
+    user = get_by_email(db_session, user_credentials.username)
 
     if not user:
         raise HTTPException(status_code=403, detail="Invalid Email")
