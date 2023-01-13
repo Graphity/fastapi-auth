@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, Integer, String, LargeBinary
 from sqlalchemy.sql.sqltypes import TIMESTAMP
-from sqlalchemy.sql.expression import text
+from sqlalchemy.sql import func
 
 from app.db.base_class import Base
 
@@ -13,4 +13,4 @@ class User(Base):
     password = Column(LargeBinary, nullable=False)
     is_active = Column(Boolean, default=True)
     created_at = Column(TIMESTAMP(timezone=True),
-                        nullable=False, server_default=text("now()"))
+                        nullable=False, server_default=func.now())
