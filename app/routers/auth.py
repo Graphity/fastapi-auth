@@ -20,6 +20,7 @@ def login_user(user_credentials: OAuth2PasswordRequestForm = Depends(), db_sessi
     if not check_password(user_credentials.password, user.password):
         raise HTTPException(status_code=403, detail="Invalid Password")
 
-    access_token = create_access_token(data={"user_id": user.id})
+    access_token = create_access_token(data={"sub": user.username})
 
     return {"access_token": access_token, "token_type": "bearer"}
+
