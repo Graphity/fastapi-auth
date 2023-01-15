@@ -30,7 +30,7 @@ def get_me(db_session: Session = Depends(get_db), current_user: User = Depends(g
 
 
 @router.get("/{username}", response_model=UserOut)
-def get_user(username: str, db_session: Session = Depends(get_db), current_user: User = Depends(get_current_active_user)):
+def get_user(username: str, db_session: Session = Depends(get_db)):
     user = get_by_username(db_session, username)
 
     if not user:
