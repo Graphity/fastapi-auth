@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.db.session import SessionLocal
 from app.core.security import oauth2_scheme, verify_access_token
 from app.models.user import User
+from app.crud.user import get
 
 
 def get_db():
@@ -20,8 +21,8 @@ def get_current_user(token: str = Depends(oauth2_scheme), db_session: Session = 
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    token = verify_access_token(token, credentials_exception)
-    user = db_session.query(User).filter(User.id == token.user_id).first()
+    token_data = verify_access_token(token, credentials_exception)
+    user = get(db_session, token_data.username)
     return user
 
 
