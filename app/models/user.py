@@ -11,9 +11,9 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     full_name = Column(String(50), nullable=False)
     username = Column(String(32), unique=True, nullable=False, index=True)
-    dob = Column(Date)
+    dob = Column(Date, nullable=False)
     email = Column(String, unique=True, index=True)
     password = Column(LargeBinary, nullable=False)
-    is_active = Column(Boolean, default=True)
+    is_disabled = Column(Boolean, default=False)
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=func.now())
