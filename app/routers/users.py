@@ -11,7 +11,7 @@ from app.core.security import create_access_token
 router = APIRouter(prefix="/users", tags=["Users"])
 
 
-@router.post("/", response_model=Token)
+@router.post("/", status_code=201, response_model=Token)
 def create_user(user_in: UserCreate, db_session: Session = Depends(get_db)):
     user = get_by_email(db_session, user_in.email)
 
