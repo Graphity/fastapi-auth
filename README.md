@@ -25,7 +25,7 @@ $ openssl rand -hex 32
 
 ```console
 cd fastapi-auth
-alembic upgrade 693c5ee3969a
+alembic upgrade head
 ```
 
 ## Run:
