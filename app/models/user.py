@@ -14,6 +14,6 @@ class User(Base):
     dob = Column(Date, nullable=False)
     email = Column(String, unique=True, index=True)
     password = Column(LargeBinary, nullable=False)
-    is_deactivated = Column(Boolean, default=False)
+    is_active = Column(Boolean, default=True)
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=func.now())
