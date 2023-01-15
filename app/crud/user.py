@@ -11,6 +11,10 @@ def get_by_email(db_session, email: str) -> User:
     return db_session.query(User).filter(User.email == email).first()
 
 
+def get_by_username(db_session, username: str) -> User:
+    return db_session.query(User).filter(User.username == username).first()
+
+
 def create(db_session, user_in: UserCreate) -> User:
     password = hash_password(user_in.password)
     user = User(**user_in.dict(exclude={"password"}), password=password)
